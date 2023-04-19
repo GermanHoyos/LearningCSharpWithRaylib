@@ -22,12 +22,12 @@ namespace Examples.MyRaylibGames
         //minimum shape data needed
         int x = 40;
         int y = 150;
-        int radius = 35;
+        int radius = 10;
         string color = "RED";
 
         //motion vars + grab needed global vars and place here
         int     xVelocity, yVelocity;
-        int     angleVelocity = 3;
+        int     angleVelocity = 1;
         float   min_xVelocity, min_yVelocity;
         float   deltaTime;
 
@@ -72,7 +72,6 @@ namespace Examples.MyRaylibGames
         //draw circle shape
         public void DrawShape()
         {
-            
             DrawCircleLines(x, y, radius, RED);
         }
 
@@ -82,20 +81,20 @@ namespace Examples.MyRaylibGames
             //test all 360 angles
             angle_1 = rawAngle / (float)180 * Math.PI;
             rawAngle += angleVelocity * (float)(Globals.globalFPS) * (float)(Globals.globalDT);
-
             if (rawAngle == 360) {rawAngle = 0.00F;}
 
             //convert end points
-            int endPosX = (int)(this.x + this.radius * Math.Cos(angle_1));   
-            int endPosY = (int)(this.y - this.radius * Math.Sin(angle_1));
+            int endPosX = (int)(this.x + this.radius * Math.Cos(angle_1)); //COS  
+            int endPosY = (int)(this.y - this.radius * Math.Sin(angle_1)); //SIN
 
             //angle
-            DrawLine (this.x, this.y,endPosX, endPosY,WHITE);
+            DrawLine(this.x, this.y,endPosX, endPosY,WHITE);
 
-            //cos
-               // DrawText("cos:  " + angle_1, 200, 200, 20, MAROON);
             //sin
+            DrawLine(endPosX,endPosY,endPosX, this.y,GREEN);
             
+            //cos
+            DrawLine(this.x, this.y, endPosX,this.y,RED);
         }
         
 

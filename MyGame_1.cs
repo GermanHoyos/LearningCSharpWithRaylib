@@ -37,7 +37,8 @@ namespace Examples.MyRaylibGames
 
             //Game Object Instantiations
             //UnitCircleOne myCircle = new UnitCircleOne();
-            UnitCircleOne myCircle = new UnitCircleOne(410, 170, 50,"RED");
+            //UnitCircleOne myCircle = new UnitCircleOne(410, 170, 165,"RED");
+            
 
             // Main game loop
             while (!WindowShouldClose())    
@@ -87,7 +88,7 @@ namespace Examples.MyRaylibGames
                 DrawText(Convert.ToString(Math.Round(deltaTime, 4)), 125, 70, 20, MAROON); // to verify this, simply change set point of FPS and see this value adjust
 
                 //Instantiate game objects
-                myCircle.DrawThis();
+                //myCircle.DrawThis();
 
                 //End drawing context
                 EndDrawing();

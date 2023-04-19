@@ -11,6 +11,8 @@ namespace Examples.MyRaylibGames
     public class UnitCircleOne
     {
 
+        
+
         public UnitCircleOne()
         {
             //instantiate with no parameters
@@ -18,7 +20,7 @@ namespace Examples.MyRaylibGames
 
         public void DrawThis()
         {
-           DrawCircle(30, 120, 35, DARKBLUE);
+           DrawCircle(40, 320, 35, DARKBLUE);
         }
 
     }

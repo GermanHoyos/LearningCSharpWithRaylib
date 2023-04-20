@@ -35,16 +35,27 @@ namespace Examples.MyRaylibGames
             InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
             SetTargetFPS(60);
 
+            //Input variables
+            string pressedKey = "";
+
             //Game Object Instantiations
             //UnitCircleOne myCircle = new UnitCircleOne();
             //UnitCircleOne myCircle = new UnitCircleOne(410, 170, 165,"RED");
-            
+            UnitCircleOne myCircle = new UnitCircleOne(410,170,165,"RED",true);
 
             // Main game loop
             while (!WindowShouldClose())    
             {
                 //Update or Declare variables here that need to be updated every tick
-               fps = GetFPS(); 
+                fps = GetFPS(); 
+    
+                //Detect key board input
+                if (IsKeyPressed(KeyboardKey.KEY_W))
+                {
+                    pressedKey = "W";
+                }
+
+                
 
                 //Time Counting Functionality
                 getTime = Convert.ToInt16(GetTime()); //Elapsed time in seconds since init window
@@ -82,13 +93,17 @@ namespace Examples.MyRaylibGames
                 DrawText("Seconds:  ", 10, 30, 20, MAROON);
                 DrawText("Minutes:  ", 10, 50, 20, MAROON);
                 DrawText("Delta Time:  ", 10, 70, 20, MAROON);
+                DrawText("Key Press:  ", 10, 90, 20, MAROON);
+                
                 DrawText(Convert.ToString(fps), 65, 10, 20, MAROON);
                 DrawText(Convert.ToString(Convert.ToInt32(seconds)), 110, 30, 20, MAROON);
                 DrawText(Convert.ToString(Convert.ToInt32(minutes)), 100, 50, 20, MAROON);
                 DrawText(Convert.ToString(Math.Round(deltaTime, 4)), 125, 70, 20, MAROON); // to verify this, simply change set point of FPS and see this value adjust
+                DrawText(Convert.ToString(pressedKey), 125, 90, 20, MAROON); 
+
 
                 //Instantiate game objects
-                //myCircle.DrawThis();
+                myCircle.DrawThis();
 
                 //End drawing context
                 EndDrawing();

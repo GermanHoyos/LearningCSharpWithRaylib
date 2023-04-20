@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static Raylib_cs.Raylib;
 using static Raylib_cs.Color;
+using Raylib_cs;
 
 namespace Examples.MyRaylibGames
 {
@@ -47,13 +48,11 @@ namespace Examples.MyRaylibGames
         //overloaded constructor = all params defalt selfControled true
         public UnitCircleOne
         (
-            int x, int y, int radius, string color,
-            int xVelocity, int yVelocity, float min_xVelocity, float min_yVelocity
+            int x, int y, int radius, string color, bool selfControlled
         )
         {
             this.x = x; this.y = y; this.radius = radius; this.color = color;
-            this.xVelocity = xVelocity; this.yVelocity = yVelocity;
-            this.min_xVelocity = min_xVelocity; this.min_yVelocity = min_yVelocity;
+            this.selfControlled = selfControlled;
         }
 
         //overloaded constructor = all params + option to change self controlled to false
@@ -80,8 +79,9 @@ namespace Examples.MyRaylibGames
         {
             //test all 360 angles
             angle_1 = rawAngle / (float)180 * Math.PI;
-            rawAngle += angleVelocity * (float)(Globals.globalFPS) * (float)(Globals.globalDT);
-            if (rawAngle == 360) {rawAngle = 0.00F;}
+            //increment below will spin angle on its axes
+            //rawAngle += angleVelocity * (float)(Globals.globalFPS) * (float)(Globals.globalDT);
+            if (rawAngle >= 360 || rawAngle <= -360) {rawAngle = 0.00F;}
 
             //convert end points
             int endPosX = (int)(this.x + this.radius * Math.Cos(angle_1)); //COS  
@@ -111,9 +111,28 @@ namespace Examples.MyRaylibGames
         public void userGenMovement()
         {
             //without gravity:
+            if (!gravityOn)
+            {
+                //detect key press
+                if (IsKeyDown(KeyboardKey.KEY_W))
+                {
+                    //move towards angle
+                }
+                if (IsKeyDown(KeyboardKey.KEY_A))
+                {
+                    rawAngle++;
+                }
+                if (IsKeyDown(KeyboardKey.KEY_D))
+                {
+                    rawAngle--;
+                }
+            }
 
             //with gravity:
+            if (gravityOn)
+            {
 
+            }
         }
 
         //draw method
@@ -126,6 +145,13 @@ namespace Examples.MyRaylibGames
             this.DrawShape();
             this.DrawAngles();
 
+            //if this object is self controled
+
+            //if this object is userControlled
+            if (selfControlled)
+            {
+                this.userGenMovement();
+            }
 
 
         }

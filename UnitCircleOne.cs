@@ -27,13 +27,16 @@ namespace Examples.MyRaylibGames
         string color = "RED";
 
         //motion vars + grab needed global vars and place here
-        int     xVelocity, yVelocity;
+        int     xVelocity = 1, yVelocity = 1;
         int     angleVelocity = 1;
+        int     endPosX, endPosY;
+        double     vecX,    vecY;
         float   min_xVelocity, min_yVelocity;
         float   deltaTime;
+        
 
         //angles and vector vars
-        public static float rawAngle = 0.00F;
+        public static float rawAngle = 90.00F;
         double angle_1 = rawAngle / (float)180 * Math.PI;
         
         //default constructor = no params, default selfControlled true
@@ -80,12 +83,15 @@ namespace Examples.MyRaylibGames
             //test all 360 angles
             angle_1 = rawAngle / (float)180 * Math.PI;
             //increment below will spin angle on its axes
-            //rawAngle += angleVelocity * (float)(Globals.globalFPS) * (float)(Globals.globalDT);
-            if (rawAngle >= 360 || rawAngle <= -360) {rawAngle = 0.00F;}
+            if (selfControlled)
+            {
+                rawAngle += angleVelocity * (float)(Globals.globalFPS) * (float)(Globals.globalDT);
+            }
+            //if (rawAngle >= 360 || rawAngle <= -360) {rawAngle = 0.00F;}
 
             //convert end points
-            int endPosX = (int)(this.x + this.radius * Math.Cos(angle_1)); //COS  
-            int endPosY = (int)(this.y - this.radius * Math.Sin(angle_1)); //SIN
+            endPosX = (int)(this.x + this.radius * Math.Cos(angle_1)); //COS  
+            endPosY = (int)(this.y - this.radius * Math.Sin(angle_1)); //SIN
 
             //angle
             DrawLine(this.x, this.y,endPosX, endPosY,WHITE);
@@ -95,6 +101,10 @@ namespace Examples.MyRaylibGames
             
             //cos
             DrawLine(this.x, this.y, endPosX,this.y,RED);
+
+            //angle using vector
+            
+
         }
         
 
@@ -115,8 +125,18 @@ namespace Examples.MyRaylibGames
             {
                 //detect key press
                 if (IsKeyDown(KeyboardKey.KEY_W))
+                {                   
+                    vecX += this.xVelocity * Math.Cos(angle_1) * Globals.globalFPS * Globals.globalDT;
+                    vecY -= this.yVelocity * Math.Sin(angle_1) * Globals.globalFPS * Globals.globalDT;
+
+                    //this.x += (int)vecX;
+                    //this.y += (int)vecY;
+                    
+                } else
                 {
-                    //move towards angle
+                    
+                    //vecX = 0;
+                    //vecY = 0;
                 }
                 if (IsKeyDown(KeyboardKey.KEY_A))
                 {
@@ -126,6 +146,10 @@ namespace Examples.MyRaylibGames
                 {
                     rawAngle--;
                 }
+                this.x += (int)vecX;
+                this.y += (int)vecY;
+
+
             }
 
             //with gravity:
@@ -148,7 +172,7 @@ namespace Examples.MyRaylibGames
             //if this object is self controled
 
             //if this object is userControlled
-            if (selfControlled)
+            if (!selfControlled)
             {
                 this.userGenMovement();
             }

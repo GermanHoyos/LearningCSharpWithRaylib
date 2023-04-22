@@ -41,7 +41,8 @@ namespace Examples.MyRaylibGames
             //Game Object Instantiations
             //UnitCircleOne myCircle = new UnitCircleOne();
             //UnitCircleOne myCircle = new UnitCircleOne(410, 170, 165,"RED");
-            UnitCircleOne myCircle = new UnitCircleOne(410,170,165,"RED",true);
+            //UnitCircleOne myCircle = new UnitCircleOne(410,170,35,"RED",false);
+            UnitCircleTwo myCircle2 = new UnitCircleTwo();
 
             // Main game loop
             while (!WindowShouldClose())    
@@ -50,12 +51,10 @@ namespace Examples.MyRaylibGames
                 fps = GetFPS(); 
     
                 //Detect key board input
-                if (IsKeyPressed(KeyboardKey.KEY_W))
-                {
-                    pressedKey = "W";
-                }
-
-                
+                //if (IsKeyPressed(KeyboardKey.KEY_W))
+                //{
+                //    pressedKey = "W";
+                //}
 
                 //Time Counting Functionality
                 getTime = Convert.ToInt16(GetTime()); //Elapsed time in seconds since init window
@@ -99,11 +98,12 @@ namespace Examples.MyRaylibGames
                 DrawText(Convert.ToString(Convert.ToInt32(seconds)), 110, 30, 20, MAROON);
                 DrawText(Convert.ToString(Convert.ToInt32(minutes)), 100, 50, 20, MAROON);
                 DrawText(Convert.ToString(Math.Round(deltaTime, 4)), 125, 70, 20, MAROON); // to verify this, simply change set point of FPS and see this value adjust
-                DrawText(Convert.ToString(pressedKey), 125, 90, 20, MAROON); 
+                //DrawText(Convert.ToString(pressedKey), 125, 90, 20, MAROON); 
 
 
                 //Instantiate game objects
-                myCircle.DrawThis();
+                //myCircle.DrawThis();
+                myCircle2.DrawThis();
 
                 //End drawing context
                 EndDrawing();

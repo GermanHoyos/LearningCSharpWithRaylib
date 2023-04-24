@@ -92,7 +92,7 @@ namespace Examples.MyRaylibGames
                 DrawText("Seconds:  ", 10, 30, 20, MAROON);
                 DrawText("Minutes:  ", 10, 50, 20, MAROON);
                 DrawText("Delta Time:  ", 10, 70, 20, MAROON);
-                DrawText("Key Press:  ", 10, 90, 20, MAROON);
+                //DrawText("Key Press:  ", 10, 90, 20, MAROON);
                 
                 DrawText(Convert.ToString(fps), 65, 10, 20, MAROON);
                 DrawText(Convert.ToString(Convert.ToInt32(seconds)), 110, 30, 20, MAROON);

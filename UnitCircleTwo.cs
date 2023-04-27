@@ -20,8 +20,8 @@ namespace Examples.MyRaylibGames
     public UnitCircleTwo()
     {
         //initial values
-        centerX = 400.00F;
-        centerY = 250.00F;
+        centerX = 700.00F;
+        centerY = 50.00F;
         radius = 50.00F;
         angleDegree = 140.00F;
     }

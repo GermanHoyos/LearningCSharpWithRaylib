@@ -1,15 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Examples.MyRaylibGames
 {
-    public static class Globals
+    public static class ListOfObjects
     {
-        public static double globalDT;
-        public static int globalFPS;
+        public static List<UnitCircle4> circlesList = new List<UnitCircle4>();
     }
 }

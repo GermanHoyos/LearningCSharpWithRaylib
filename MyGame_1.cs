@@ -7,6 +7,7 @@ using Raylib_cs;
 using static Raylib_cs.Raylib;
 using static Raylib_cs.Color;
 using System;
+using System.ComponentModel;
 
 namespace Examples.MyRaylibGames
 {
@@ -43,6 +44,11 @@ namespace Examples.MyRaylibGames
             //UnitCircleOne myCircle = new UnitCircleOne(410, 170, 165,"RED");
             //UnitCircleOne myCircle = new UnitCircleOne(410,170,35,"RED",false);
             UnitCircleTwo myCircle2 = new UnitCircleTwo();
+            UnitCircle3 myCircle3 = new UnitCircle3();
+            UnitCircle4 myCircle4 = new UnitCircle4();
+
+            //Various lists initializations
+            ListOfObjects.circlesList.Add(myCircle4);            
 
             // Main game loop
             while (!WindowShouldClose())    
@@ -103,7 +109,16 @@ namespace Examples.MyRaylibGames
 
                 //Instantiate game objects
                 //myCircle.DrawThis();
-                myCircle2.DrawThis();
+                //myCircle2.DrawThis();
+                //myCircle3.DrawThis();
+                //myCircle4.DrawThis();
+
+
+                //itereate through circles list and draw every circle
+                foreach (UnitCircle4 i in ListOfObjects.circlesList)
+                {
+                    i.DrawThis();
+                }
 
                 //End drawing context
                 EndDrawing();

@@ -9,7 +9,7 @@ using Raylib_cs;
 
 namespace Examples.MyRaylibGames
 {
-    public class UnitCircleOne
+    public class UnitCircleOne 
     {
 
         //bool vars for determining how object behaves

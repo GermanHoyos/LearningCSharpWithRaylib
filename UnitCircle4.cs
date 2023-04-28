@@ -13,78 +13,84 @@ namespace Examples.MyRaylibGames
 {
     public class UnitCircle4 : MyGame_1
     {
-        int angleChangeCountX = 0;
-        int angleChangeCountY = 0;
-        float angleOfIncidence, remainderAngle;
-        float changedAngle;
-        float centerX = 600.00F, centerY = 350.00F, radius = 50.00F, angleDegree = 173, reflect = 0f;  //required for shape and interior angle drawings
-        float angleConverted, endPosX, endPosY;                                                         //required for shape and interior angle drawings
-        float xVel = 3f, yVel = 3f, friction, mass, xNewVector, yNewVector;                             //required for movement
-        float top = 270.00F , right = 180.00F, bottom = 90.00F, left = 0.00F;                           //reflection angles for hitting walls
-        float screenHeight = 450.00F, screenWidth = 800.00F;
-        public Vector2 sin, cos, center, endPos;
+        float centerX = (800f / 2f), centerY = (450f / 2f), radius = 50.00f, angleDegree = 45;  
+        float radians, endPosX, endPosY;                                                         
+        float xVelocityInPixels = 1f, yVelocityInPixels = 1f;
+        float targetLength, radiusLength;
+        public Vector2 maximaMinima, center, endPosVec2;
 
-        public UnitCircle4(){}
+        float tX = 640, tY = 140;
+        public Vector2 targetXY;
+
+        public UnitCircle4()
+        {
+            //key formulas:
+            //sin(x) =          1 dimensional direction, either -1 or 1, gets the direction of a vector 
+            //abs(x) =          length or magnitude
+            //distance(a,b) =   1 dimensional: abs(b - a) 
+            //scale =           a set of numbers, amounts, etc. used to measure or compare the level of something
+            //scalars =         number rules that apply to 1 dimension, sort of like 1 dimensional vectors
+            //vector =          a single point in space in relation to another point in space ie: (2,3) in relation to (0,0) on a 2d graph
+            //components =      refer to the single referenced axis in a vector, ie: Vector2(2,3): 2 = x component, 3 = y component
+            //magnitude =       the measured length of scaled individual increments based on some abritrary scale ie: (4) = length of "4" from 0,1,2,3,(4)
+            //vectorLength =    Math.sqrt(x^2 + y^2)
+            //normalization =   the process of making a vectors length or magnitude 1, ie: |v| = length   v with ^ ontop = direction
+                                //this gets the direction to a non unit 1 vector
+            //howTo normalize = unitVector V = x/vectorLength, y/vectorLength
+            //whyNormalize =    once a vector is normalized, you can move at a fixed rate of speed towards a direction ie: normalizedVector * speed
+            //negation =        flip the arrow vector about its origin, ie: (2,1) negated = (-1,-2) [ /\ visually ]
+            //unit vector =     directions in a unit vector circle whose length or magnitude is 1
+        }
+
+        public void testTarget()
+        {
+            targetXY = new Vector2(tX, tY);
+            DrawPixelV(targetXY,WHITE);
+            tX--;
+        }
 
         public void calculateAngles()
         {
-            this.angleConverted = this.angleDegree / 180.00F * 3.14F;
-            this.endPosX = this.centerX + this.radius * (float)(Math.Cos(this.angleConverted));
-            this.endPosY = this.centerY - this.radius * (float)(Math.Sin(this.angleConverted));
-            this.center = new Vector2(this.centerX, this.centerY);
-            this.endPos = new Vector2(this.endPosX, this.endPosY);
-            this.sin = new Vector2(this.endPosX, this.centerY);
-            this.cos = new Vector2(this.endPosX, this.centerY);
-            DrawText("ChangeCount:  " + Convert.ToString(this.angleChangeCountX), (int)this.centerX - (int)this.radius, (int)this.centerY - (int)this.radius - 65, 20, MAROON);
-            DrawText("Angle:  " + Convert.ToString(this.angleDegree), (int)this.centerX - (int)this.radius, (int)this.centerY - (int)this.radius - 25, 20, MAROON);
-            DrawText("X:  " + Convert.ToString(Math.Round(this.centerX)), (int)this.centerX - (int)this.radius, (int)this.centerY - (int)this.radius - 45, 20, MAROON);
-            DrawText("Y:  " + Convert.ToString(Math.Round(this.centerY)), (int)this.centerX + (int)this.radius - 5, (int)this.centerY - (int)this.radius - 45, 20, MAROON);
+            //circle object properties
+            center = new Vector2(centerX, centerY);
+            radians = angleDegree / 180.00f * 3.14f;
+            endPosX = centerX + radius * (float)(Math.Cos(radians));
+            endPosY = centerY - radius * (float)(Math.Sin(radians));
+            endPosVec2 = new Vector2(endPosX, endPosY);
+            maximaMinima = new Vector2(endPosX, centerY); //the point at which COS and SIN intersect and end
+
+            //targeting properties
+            targetLength = (float)Math.Sqrt((tX * tX) + (tY * tY)); //with respect to (0,0)
 
 
-            //left + right bounce only
-            if (this.centerX < 50 && this.angleChangeCountX < 1)
-            {
-                this.angleChangeCountX++;
-                this.changedAngle = ((this.angleDegree + 180) % 360) * -1;
-                this.angleDegree = 360 - Math.Abs(this.changedAngle);
-
-            }
-            if (this.centerX > 750 && this.angleChangeCountX < 1)
-            {
-                this.angleChangeCountX++;
-                this.changedAngle = ((this.angleDegree + 180) % 360) * -1;
-                this.angleDegree = 360 - Math.Abs(this.changedAngle);
-            }
-            //left + right buffer
-            if (this.centerX > 51 && this.centerX < 749)
-            {
-                this.angleChangeCountX = 0;
-            }
-
-
-
-
-
-            //travel in the direction of calculated angles above
-            this.centerX += (float)(Math.Cos(this.angleConverted)) * this.xVel;         //move circle x based on this.angleConverted * some speed
-            this.centerY -= (float)(Math.Sin(this.angleConverted)) * this.yVel;         //move circle y based on this.angleConverted * some speed
+            //this.centerX += (float)(Math.Cos(this.radians)) * this.xVelocityInPixels;
+            //this.centerY -= (float)(Math.Sin(this.radians)) * this.yVelocityInPixels;         
         }
 
         public void DrawLines()
         {
-            DrawCircleSectorLines(this.center ,this.radius, 0F, 360F, 0, WHITE);    //circle outline
-            DrawLineV(this.center, this.endPos, WHITE);                                                     //angle
-            DrawLineV(this.endPos, this.sin, GREEN);                                                        //sin
-            DrawLineV(this.center, this.cos, RED);                                                          //cos
+            DrawCircleSectorLines(center ,radius, 0F, 360F, 0, WHITE); //circle outline
+            DrawLineV(center, endPosVec2, WHITE); //angle
+            DrawLineV(endPosVec2, maximaMinima, GREEN); //sin
+            DrawLineV(center, maximaMinima, RED); //cos
+            DrawLine(215,0,215,450,RED);
         }
+
+        public void DrawThisText()
+        {
+            DrawText("Angle:  " + Convert.ToString(angleDegree), (int)centerX - (int)radius, (int)centerY - (int)radius - 25, 20, MAROON);
+            DrawText("X:  " + Convert.ToString(Math.Round(centerX)), (int)centerX - (int)radius, (int)centerY - (int)radius - 45, 20, MAROON);
+            DrawText("Y:  " + Convert.ToString(Math.Round(centerY)), (int)centerX + (int)radius - 5, (int)centerY - (int)radius - 45, 20, MAROON);
+            DrawText("Target Length: " + Convert.ToString(targetLength), 10, 90, 20, MAROON);
+            DrawText("Radius Length:  ", 10, 110, 20, MAROON);      
+        }
+
         public void DrawThis()
         {
-            this.calculateAngles();
-            this.DrawLines();
-
-
-
-
+            calculateAngles();
+            DrawLines();
+            DrawThisText();
+            testTarget();
         }
     }
 }

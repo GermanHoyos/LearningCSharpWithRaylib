@@ -16,11 +16,14 @@ namespace Examples.MyRaylibGames
         float centerX = (800f / 2f), centerY = (450f / 2f), radius = 50.00f, angleDegree = 45;  
         float radians, endPosX, endPosY;                                                         
         float xVelocityInPixels = 1f, yVelocityInPixels = 1f;
-        float targetLength, radiusLength;
+        float tX = 740, tY = 125;
         public Vector2 maximaMinima, center, endPosVec2;
-
-        float tX = 640, tY = 140;
+        public Vector2 finalUnitVecOfCircle;
         public Vector2 targetXY;
+        public Vector2 directionEndPos;
+        public static Vector2 unitVectorOfCirlce;
+        public static float  magnitude;
+
 
         public UnitCircle4()
         {
@@ -45,44 +48,56 @@ namespace Examples.MyRaylibGames
         public void testTarget()
         {
             targetXY = new Vector2(tX, tY);
+            DrawText("Target", (int)tX - 30, (int)tY, 20, MAROON);
             DrawPixelV(targetXY,WHITE);
             tX--;
         }
 
+        //normalize the the direction to a point with respect to the centerX and centerY of this circle
+        public static Vector2 NormalizeDirToPt(float centerX, float centerY, float tX, float tY)
+        {
+            Vector2 direction = new Vector2(tX - centerX, tY - centerY);
+            magnitude = direction.Length();
+            if (magnitude > 0)
+            {
+                direction /= magnitude;
+            }
+            return direction;            
+        }
+
         public void calculateAngles()
         {
+            //targeting properties
+            finalUnitVecOfCircle = NormalizeDirToPt(centerX,centerY,tX,tY);
+            directionEndPos = center + finalUnitVecOfCircle * radius;
+            unitVectorOfCirlce = directionEndPos - center;
+
             //circle object properties
             center = new Vector2(centerX, centerY);
             radians = angleDegree / 180.00f * 3.14f;
             endPosX = centerX + radius * (float)(Math.Cos(radians));
             endPosY = centerY - radius * (float)(Math.Sin(radians));
             endPosVec2 = new Vector2(endPosX, endPosY);
-            maximaMinima = new Vector2(endPosX, centerY); //the point at which COS and SIN intersect and end
-
-            //targeting properties
-            targetLength = (float)Math.Sqrt((tX * tX) + (tY * tY)); //with respect to (0,0)
-
-
-            //this.centerX += (float)(Math.Cos(this.radians)) * this.xVelocityInPixels;
-            //this.centerY -= (float)(Math.Sin(this.radians)) * this.yVelocityInPixels;         
+            maximaMinima = new Vector2(directionEndPos.X, centerY); //the point at which COS and SIN intersect and end
         }
 
         public void DrawLines()
         {
             DrawCircleSectorLines(center ,radius, 0F, 360F, 0, WHITE); //circle outline
-            DrawLineV(center, endPosVec2, WHITE); //angle
-            DrawLineV(endPosVec2, maximaMinima, GREEN); //sin
+            DrawLineV(center, directionEndPos, WHITE); //angle
+            DrawLineV(directionEndPos, maximaMinima, GREEN); //sin
             DrawLineV(center, maximaMinima, RED); //cos
-            DrawLine(215,0,215,450,RED);
+            DrawLineV(center, directionEndPos, WHITE);
+            DrawLine(215,0,215,450,RED); //left console
         }
 
         public void DrawThisText()
         {
-            DrawText("Angle:  " + Convert.ToString(angleDegree), (int)centerX - (int)radius, (int)centerY - (int)radius - 25, 20, MAROON);
-            DrawText("X:  " + Convert.ToString(Math.Round(centerX)), (int)centerX - (int)radius, (int)centerY - (int)radius - 45, 20, MAROON);
-            DrawText("Y:  " + Convert.ToString(Math.Round(centerY)), (int)centerX + (int)radius - 5, (int)centerY - (int)radius - 45, 20, MAROON);
-            DrawText("Target Length: " + Convert.ToString(targetLength), 10, 90, 20, MAROON);
-            DrawText("Radius Length:  ", 10, 110, 20, MAROON);      
+            //DrawText("Angle:  " + Convert.ToString(angleDegree), (int)centerX - (int)radius, (int)centerY - (int)radius - 25, 20, MAROON);
+            //DrawText("X:  " + Convert.ToString(Math.Round(centerX)), (int)centerX - (int)radius, (int)centerY - (int)radius - 45, 20, MAROON);
+            //DrawText("Y:  " + Convert.ToString(Math.Round(centerY)), (int)centerX + (int)radius - 5, (int)centerY - (int)radius - 45, 20, MAROON);
+            //DrawText("Target dist: " + Convert.ToString(Math.Round(distanceFromCenterOfCircle)), 10, 90, 20, MAROON);
+            //DrawText("Radius dist:  ", 10, 110, 20, MAROON);      
         }
 
         public void DrawThis()

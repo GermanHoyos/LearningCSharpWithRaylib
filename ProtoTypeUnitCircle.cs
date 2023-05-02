@@ -11,7 +11,7 @@ using System.Drawing;
 
 namespace Examples.MyRaylibGames
 {
-    public class UnitCircle4 : MyGame_1
+    public class ProtoTypeUnitCircle : MyGame_1
     {
         float centerX = (800f / 2f), centerY = (450f / 2f), radius = 50.00f, tX = 740, tY = 125;  
         public Vector2 maximaMinima, center, endPosVec2;
@@ -20,7 +20,7 @@ namespace Examples.MyRaylibGames
         public Vector2 directionEndPos;
         public static float  magnitude;
 
-        public UnitCircle4()
+        public ProtoTypeUnitCircle()
         {
             //key formulas:
             //sin(x) =          1 dimensional direction, either -1 or 1, gets the direction of a vector 
@@ -61,19 +61,18 @@ namespace Examples.MyRaylibGames
 
         public void calculateAngles()
         {
-            finalUnitVecOfCircle = NormalizeDirToPt(centerX,centerY,tX,tY);
+            finalUnitVecOfCircle = NormalizeDirToPt(centerX,centerY,tX,tY); // normalized to target / direction
             directionEndPos = center + finalUnitVecOfCircle * radius; //show direction line
-            center = new Vector2(centerX, centerY);
+            center = new Vector2(centerX, centerY);// center of sphere
             maximaMinima = new Vector2(directionEndPos.X, centerY); //the point at which COS and SIN intersect and end
         }
 
         public void DrawLines()
         {
             DrawCircleSectorLines(center ,radius, 0F, 360F, 0, WHITE); //circle outline
-            DrawLineV(center, directionEndPos, WHITE); //angle
-            DrawLineV(directionEndPos, maximaMinima, GREEN); //sin
-            DrawLineV(center, maximaMinima, RED); //cos
-            DrawLineV(center, directionEndPos, WHITE);
+            DrawLineV(center, directionEndPos, WHITE); //DIRECTION
+            DrawLineV(directionEndPos, maximaMinima, GREEN); //SIN
+            DrawLineV(center, maximaMinima, RED); //COS
             DrawLine(215,0,215,450,RED); //left console
         }
 

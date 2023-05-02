@@ -40,12 +40,7 @@ namespace Examples.MyRaylibGames
             string pressedKey = "";
 
             //Game Object Instantiations
-            //UnitCircleOne myCircle = new UnitCircleOne();
-            //UnitCircleOne myCircle = new UnitCircleOne(410, 170, 165,"RED");
-            //UnitCircleOne myCircle = new UnitCircleOne(410,170,35,"RED",false);
-            UnitCircleTwo myCircle2 = new UnitCircleTwo();
-            UnitCircle3 myCircle3 = new UnitCircle3();
-            UnitCircle4 myCircle4 = new UnitCircle4();
+            ProtoTypeUnitCircle myCircle4 = new ProtoTypeUnitCircle();
 
             //Various lists initializations
             ListOfObjects.circlesList.Add(myCircle4);            
@@ -108,14 +103,8 @@ namespace Examples.MyRaylibGames
 
 
                 //Instantiate game objects
-                //myCircle.DrawThis();
-                //myCircle2.DrawThis();
-                //myCircle3.DrawThis();
-                //myCircle4.DrawThis();
-
-
                 //itereate through circles list and draw every circle
-                foreach (UnitCircle4 i in ListOfObjects.circlesList)
+                foreach (ProtoTypeUnitCircle i in ListOfObjects.circlesList)
                 {
                     i.DrawThis();
                 }

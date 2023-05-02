@@ -8,6 +8,6 @@ namespace Examples.MyRaylibGames
 {
     public static class ListOfObjects
     {
-        public static List<UnitCircle4> circlesList = new List<UnitCircle4>();
+        public static List<ProtoTypeUnitCircle> circlesList = new List<ProtoTypeUnitCircle>();
     }
 }

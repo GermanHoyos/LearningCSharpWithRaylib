@@ -13,17 +13,12 @@ namespace Examples.MyRaylibGames
 {
     public class UnitCircle4 : MyGame_1
     {
-        float centerX = (800f / 2f), centerY = (450f / 2f), radius = 50.00f, angleDegree = 45;  
-        float radians, endPosX, endPosY;                                                         
-        float xVelocityInPixels = 1f, yVelocityInPixels = 1f;
-        float tX = 740, tY = 125;
+        float centerX = (800f / 2f), centerY = (450f / 2f), radius = 50.00f, tX = 740, tY = 125;  
         public Vector2 maximaMinima, center, endPosVec2;
         public Vector2 finalUnitVecOfCircle;
         public Vector2 targetXY;
         public Vector2 directionEndPos;
-        public static Vector2 unitVectorOfCirlce;
         public static float  magnitude;
-
 
         public UnitCircle4()
         {
@@ -53,7 +48,6 @@ namespace Examples.MyRaylibGames
             tX--;
         }
 
-        //normalize the the direction to a point with respect to the centerX and centerY of this circle
         public static Vector2 NormalizeDirToPt(float centerX, float centerY, float tX, float tY)
         {
             Vector2 direction = new Vector2(tX - centerX, tY - centerY);
@@ -67,17 +61,9 @@ namespace Examples.MyRaylibGames
 
         public void calculateAngles()
         {
-            //targeting properties
             finalUnitVecOfCircle = NormalizeDirToPt(centerX,centerY,tX,tY);
-            directionEndPos = center + finalUnitVecOfCircle * radius;
-            unitVectorOfCirlce = directionEndPos - center;
-
-            //circle object properties
+            directionEndPos = center + finalUnitVecOfCircle * radius; //show direction line
             center = new Vector2(centerX, centerY);
-            radians = angleDegree / 180.00f * 3.14f;
-            endPosX = centerX + radius * (float)(Math.Cos(radians));
-            endPosY = centerY - radius * (float)(Math.Sin(radians));
-            endPosVec2 = new Vector2(endPosX, endPosY);
             maximaMinima = new Vector2(directionEndPos.X, centerY); //the point at which COS and SIN intersect and end
         }
 
@@ -93,11 +79,10 @@ namespace Examples.MyRaylibGames
 
         public void DrawThisText()
         {
-            //DrawText("Angle:  " + Convert.ToString(angleDegree), (int)centerX - (int)radius, (int)centerY - (int)radius - 25, 20, MAROON);
-            //DrawText("X:  " + Convert.ToString(Math.Round(centerX)), (int)centerX - (int)radius, (int)centerY - (int)radius - 45, 20, MAROON);
-            //DrawText("Y:  " + Convert.ToString(Math.Round(centerY)), (int)centerX + (int)radius - 5, (int)centerY - (int)radius - 45, 20, MAROON);
-            //DrawText("Target dist: " + Convert.ToString(Math.Round(distanceFromCenterOfCircle)), 10, 90, 20, MAROON);
-            //DrawText("Radius dist:  ", 10, 110, 20, MAROON);      
+            DrawText("Vector in relation", 10, 355, 20, MAROON);
+            DrawText("to center: ", 10, 370, 20, MAROON);
+            DrawText("Unit Vector X: " + Convert.ToString(Math.Round(finalUnitVecOfCircle.X, 2)), 10, 390, 20, MAROON);
+            DrawText("Unit Vector Y: " + Convert.ToString(Math.Round(finalUnitVecOfCircle.Y, 2)), 10, 410, 20, MAROON);
         }
 
         public void DrawThis()

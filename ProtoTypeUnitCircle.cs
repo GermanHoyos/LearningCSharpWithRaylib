@@ -73,7 +73,6 @@ namespace Examples.MyRaylibGames
             DrawLineV(center, directionEndPos, WHITE); //DIRECTION
             DrawLineV(directionEndPos, maximaMinima, GREEN); //SIN
             DrawLineV(center, maximaMinima, RED); //COS
-            DrawLine(215,0,215,450,RED); //left console
         }
 
         public void DrawThisText()

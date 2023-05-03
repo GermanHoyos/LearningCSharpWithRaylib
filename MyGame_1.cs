@@ -33,17 +33,28 @@ namespace Examples.MyRaylibGames
             float canvas_gravity = 0.5F;
 
             //Window setup / initialization
-            InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+            InitWindow(screenWidth, screenHeight, "Set your mind free");
             SetTargetFPS(60);
 
             //Input variables
             string pressedKey = "";
 
             //Game Object Instantiations
-            ProtoTypeUnitCircle myCircle4 = new ProtoTypeUnitCircle();
+            //ProtoTypeUnitCircle myCircle4 = new ProtoTypeUnitCircle();
+
+            //Doodles
+            for (int i = 0; i < 100; i++) 
+            {
+               //push 100 instances of the mindDoodle into an array.
+            }
+
+            MindDoodle mindObj  = new MindDoodle(true);
+
+            
+
 
             //Various lists initializations
-            ListOfObjects.circlesList.Add(myCircle4);            
+            //ListOfObjects.circlesList.Add(myCircle4);            
 
             // Main game loop
             while (!WindowShouldClose())    
@@ -99,7 +110,8 @@ namespace Examples.MyRaylibGames
                 DrawText(Convert.ToString(Convert.ToInt32(seconds)), 110, 30, 20, MAROON);
                 DrawText(Convert.ToString(Convert.ToInt32(minutes)), 100, 50, 20, MAROON);
                 DrawText(Convert.ToString(Math.Round(deltaTime, 4)), 125, 70, 20, MAROON); // to verify this, simply change set point of FPS and see this value adjust
-                //DrawText(Convert.ToString(pressedKey), 125, 90, 20, MAROON); 
+                //DrawText(Convert.ToString(pressedKey), 125, 90, 20, MAROON);
+                DrawLine(215,0,215,450,RED); //left console
 
 
                 //Instantiate game objects
@@ -108,6 +120,10 @@ namespace Examples.MyRaylibGames
                 {
                     i.DrawThis();
                 }
+
+                //doodles
+                mindObj.DrawThis();
+
 
                 //End drawing context
                 EndDrawing();

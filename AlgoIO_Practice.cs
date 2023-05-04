@@ -1,3 +1,4 @@
+using Raylib_cs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace Examples.MyRaylibGames
 //************************************************************************************************************************
 //************************************************************************************************************************
 /* QUESTION: TWO NUMBER SUM
- 
+   
 */
 
 	public static int[] TwoNumberSum(int[] array, int targetSum) {
@@ -41,15 +42,66 @@ namespace Examples.MyRaylibGames
 		return new int[0];
 	}
 
+    //int[] myArray = {3,5,-4,8,11,1,-1,6};
+    //int targetSum = 10;
+    //TwoNumberSum(myArray, targetSum);
 
 //************************************************************************************************************************
 //************************************************************************************************************************
 
 //************************************************************************************************************************
 //************************************************************************************************************************
-/* QUESTION:
- 
+/* QUESTION: VALIDATE SUBSEQUENCE
+    
 */
+
+    	List<int> array = new List<int> { // x
+    		5, 1, 22, 25, 6, -1, 8, 10
+    	};
+    	List<int> sequence = new List<int> { // i
+    		1, 6, -1, -1
+    	};
+
+    public static bool IsValidSubsequence(List<int> array, List<int> sequence) {
+
+        int countOfFoundInstances = 0;
+        int indexOfFoundInstance = -1;
+        bool remainsTrueThusFar = false;
+
+            foreach(int i in sequence) //for every number in sequence LOOP1
+            {
+                
+                remainsTrueThusFar = false;
+                countOfFoundInstances = 0;
+  
+                for (int x = 0; x < array.Count; x++) // for every "array" index LOOP2
+                {
+                    if(
+                        i == array[x]
+                        && countOfFoundInstances < 1
+                        && x != indexOfFoundInstance
+                        && x > indexOfFoundInstance
+                    )
+                    {   
+                        countOfFoundInstances++;
+                        indexOfFoundInstance = x;
+                        Console.Write(Convert.ToString(i));
+                        remainsTrueThusFar = true;
+                    }
+                } // END LOOP 2
+
+                if (remainsTrueThusFar == false) // no good comparison was found
+                {
+                    Console.Write("false");
+                    return false;
+                }
+             }
+            
+            Console.Write("true");
+            return remainsTrueThusFar;
+        }
+
+    //IsValidSubsequence(array, sequence);
 
 
 //************************************************************************************************************************

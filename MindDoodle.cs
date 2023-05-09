@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Raylib_cs;
 using static Raylib_cs.Raylib;
 using static Raylib_cs.Color;
@@ -15,19 +14,25 @@ namespace Examples.MyRaylibGames
 {
     public class MindDoodle
     {
-        
 
         //unique id for each instatiated object
         public static int thisID = 1;
+        //[10]x[10] grid
+        public static int thisX = 257;
+        public static int thisY = 10;
         public int ID { get; set; }
+        public int myX { get; set; }
+        public int myY { get; set; }
 
+
+        //values to manipulate that pertain to "this" object
         public int red = 255;
         public int green = 255;
         public int blue = 255;
         public int chosenString = 2;
         public int duration;
         public bool random = false;
-        Rectangle myRect = new Rectangle(255,10,20,20);
+        public Rectangle myRect;
         string[] myString = {"@", "#", "*"};
 
         /*         Matrix
@@ -49,7 +54,12 @@ namespace Examples.MyRaylibGames
 
         public MindDoodle(bool random) {
             this.random = random;
+
+            //build grid with placement of squares
             ID = thisID++;
+            myX = thisX+ 100;
+            myY = thisY;
+            myRect = new Rectangle(myX,myY,20,20);
         }
 
         public void mySquare()
@@ -72,7 +82,7 @@ namespace Examples.MyRaylibGames
             }
 
             DrawRectangleGradientEx(myRect,BLACK,BLACK,BLACK,BLACK);
-            DrawText(Convert.ToString(this.ID),257,10,19,myColor);
+            DrawText(Convert.ToString(this.ID),myX,myY,19,myColor);
         }
 
         public void DrawThis()

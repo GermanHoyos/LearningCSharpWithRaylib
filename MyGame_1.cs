@@ -41,17 +41,13 @@ namespace Examples.MyRaylibGames
 
             //Game Object Instantiations
             //ProtoTypeUnitCircle myCircle4 = new ProtoTypeUnitCircle();
+            MindDoodle mindObj  = new MindDoodle(true);
 
             //Doodles
             for (int i = 0; i < 100; i++) 
             {
                //push 100 instances of the mindDoodle into an array.
             }
-
-            MindDoodle mindObj  = new MindDoodle(true);
-
-            
-
 
             //Various lists initializations
             //ListOfObjects.circlesList.Add(myCircle4);            

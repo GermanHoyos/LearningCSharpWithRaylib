@@ -17,13 +17,17 @@ namespace Examples.MyRaylibGames
     {
         
 
-        public static int red = 255;
-        public static int green = 255;
-        public static int blue = 255;
-        public static int chosenString = 2;
-        public static int duration;
+        //unique id for each instatiated object
+        public static int thisID = 1;
+        public int ID { get; set; }
+
+        public int red = 255;
+        public int green = 255;
+        public int blue = 255;
+        public int chosenString = 2;
+        public int duration;
         public bool random = false;
-        Rectangle myRect = new Rectangle(255,10,9,9);
+        Rectangle myRect = new Rectangle(255,10,20,20);
         string[] myString = {"@", "#", "*"};
 
         /*         Matrix
@@ -35,6 +39,7 @@ namespace Examples.MyRaylibGames
          *         top      = n - rowLength
          *         topR     = n - rowLength + 1
          *         left     = n - 1
+         *         center   = n
          *         right    = n + 1
          *         bottomL  = n + rowLength - 1
          *         bottomR  = n + rowLength + 1
@@ -42,8 +47,9 @@ namespace Examples.MyRaylibGames
 
         public MindDoodle(){}
 
-        public MindDoodle(bool random){
+        public MindDoodle(bool random) {
             this.random = random;
+            ID = thisID++;
         }
 
         public void mySquare()
@@ -66,7 +72,7 @@ namespace Examples.MyRaylibGames
             }
 
             DrawRectangleGradientEx(myRect,BLACK,BLACK,BLACK,BLACK);
-            DrawText(myString[chosenString],257,10,10,myColor);
+            DrawText(Convert.ToString(this.ID),257,10,19,myColor);
         }
 
         public void DrawThis()

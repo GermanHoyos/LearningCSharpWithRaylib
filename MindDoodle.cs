@@ -57,7 +57,8 @@ namespace Examples.MyRaylibGames
 
             //build grid with placement of squares
             ID = thisID++;
-            myX = thisX+ 100;
+            thisX += 40;
+            myX = thisX;
             myY = thisY;
             myRect = new Rectangle(myX,myY,20,20);
         }

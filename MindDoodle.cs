@@ -24,7 +24,6 @@ namespace Examples.MyRaylibGames
         public int myX { get; set; }
         public int myY { get; set; }
 
-
         //values to manipulate that pertain to "this" object
         public int red = 255;
         public int green = 255;
@@ -83,6 +82,7 @@ namespace Examples.MyRaylibGames
             }
 
             DrawRectangleGradientEx(myRect,BLACK,BLACK,BLACK,BLACK);
+            //use "myString[chosenString]" to randomize letters
             DrawText(Convert.ToString(this.ID),myX,myY,19,myColor);
         }
 
@@ -90,7 +90,6 @@ namespace Examples.MyRaylibGames
         {
             mySquare();
         }
-
     }
 
 }

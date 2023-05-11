@@ -8,11 +8,31 @@ using static Raylib_cs.Raylib;
 using static Raylib_cs.Color;
 using System;
 using System.ComponentModel;
+using System.Numerics;
 
 namespace Examples.MyRaylibGames
 {
     public class MyGame_1
     {
+
+        // Check if any key is pressed
+        // NOTE: We limit keys check to keys between 32 (KEY_SPACE) and 126
+       public static bool IsAnyKeyPressed()
+        {
+            bool keyPressed = false;
+            int key = GetKeyPressed();
+
+            if(key >= 32 && key <= 126)
+            {
+                keyPressed = true;
+                return keyPressed;
+            }
+            return keyPressed;
+        }
+
+        
+
+
         public static int Main()
         {
 
@@ -38,36 +58,34 @@ namespace Examples.MyRaylibGames
 
             //Input variables
             string pressedKey = "";
+            Vector2 mouseClickPos = new (0,0);
 
-            //Game Object Instantiations
-            //ProtoTypeUnitCircle myCircle4 = new ProtoTypeUnitCircle();
-            //MindDoodle mindObj1  = new MindDoodle(true);
-            //MindDoodle mindObj2  = new MindDoodle(true);
-            //MindDoodle mindObj3  = new MindDoodle(true);
-            
-
-
-            //Doodles
-            for (int i = 0; i < 4; i++) 
+            //Object Instantiations
+            for (int i = 0; i < 660; i++) 
             {
                //push 100 instances of the mindDoodle into an array.
                ListOfObjects.doodleList.Add(new MindDoodle(true)); 
             }
 
-            //Various lists initializations
-            //ListOfObjects.circlesList.Add(myCircle4);            
-
             // Main game loop
             while (!WindowShouldClose())    
             {
                 //Update or Declare variables here that need to be updated every tick
-                fps = GetFPS(); 
-    
+                fps = GetFPS();
+
                 //Detect key board input
-                //if (IsKeyPressed(KeyboardKey.KEY_W))
-                //{
-                //    pressedKey = "W";
-                //}
+                bool keyWasPressed = IsAnyKeyPressed();
+                if (keyWasPressed)
+                {
+                   pressedKey = Convert.ToString((char)GetCharPressed());
+                }
+
+                //Detect mouse click x and y pos
+                bool mouseLeftPress = IsMouseButtonPressed(MouseButton.MOUSE_BUTTON_LEFT);
+                if (mouseLeftPress)
+                {
+                    mouseClickPos = GetMousePosition();
+                }
 
                 //Time Counting Functionality
                 getTime = Convert.ToInt16(GetTime()); //Elapsed time in seconds since init window
@@ -105,30 +123,23 @@ namespace Examples.MyRaylibGames
                 DrawText("Seconds:  ", 10, 30, 20, MAROON);
                 DrawText("Minutes:  ", 10, 50, 20, MAROON);
                 DrawText("Delta Time:  ", 10, 70, 20, MAROON);
-                //DrawText("Key Press:  ", 10, 90, 20, MAROON);
-                
+                DrawText("Key Press:  ", 10, 90, 20, MAROON);
+                DrawText("Click:  ", 10, 115, 20, MAROON);
                 DrawText(Convert.ToString(fps), 65, 10, 20, MAROON);
                 DrawText(Convert.ToString(Convert.ToInt32(seconds)), 110, 30, 20, MAROON);
                 DrawText(Convert.ToString(Convert.ToInt32(minutes)), 100, 50, 20, MAROON);
                 DrawText(Convert.ToString(Math.Round(deltaTime, 4)), 125, 70, 20, MAROON); // to verify this, simply change set point of FPS and see this value adjust
-                //DrawText(Convert.ToString(pressedKey), 125, 90, 20, MAROON);
-                DrawLine(215,0,215,450,RED); //left console
+                DrawText(Convert.ToString(pressedKey), 125, 90, 20, MAROON);
+                DrawText(Convert.ToString(Convert.ToString(mouseClickPos.X) + " " + Convert.ToString(mouseClickPos.Y)), 70, 115, 20, MAROON);
 
+                //Console line sperator
+                DrawLine(190,0,190,450,RED); //left console
 
-                //Instantiate game objects
-                //itereate through circles list and draw every circle
+                //Itereate through lists and draw objects that are in list
                 foreach (MindDoodle i in ListOfObjects.doodleList)
                 {
                     i.DrawThis();
                 }
-
-                //doodles
-                //mindObj1.DrawThis();
-                //mindObj2.DrawThis();
-                //mindObj3.DrawThis();
-                
-
-
 
                 //End drawing context
                 EndDrawing();
@@ -137,7 +148,6 @@ namespace Examples.MyRaylibGames
             // De-Initialization
             // Close window and OpenGL context
             CloseWindow();        
-
 
             return 0;
         }

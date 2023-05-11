@@ -14,16 +14,13 @@ namespace Examples.MyRaylibGames
 {
     public class MindDoodle
     {
-
         //unique id for each instatiated object
         public static int thisID = 1;
-        //[10]x[10] grid
-        public static int thisX = 257;
-        public static int thisY = 10;
+        public static int thisX = 175;
+        public static int thisY = 5;
         public int ID { get; set; }
         public int myX { get; set; }
         public int myY { get; set; }
-
         //values to manipulate that pertain to "this" object
         public int red = 255;
         public int green = 255;
@@ -33,7 +30,6 @@ namespace Examples.MyRaylibGames
         public bool random = false;
         public Rectangle myRect;
         string[] myString = {"@", "#", "*"};
-
         /*         Matrix
          *         [][topL]     [top]       [topR]      
          *         [][left]     [n]         [right] 
@@ -53,10 +49,15 @@ namespace Examples.MyRaylibGames
 
         public MindDoodle(bool random) {
             this.random = random;
-
             //build grid with placement of squares
             ID = thisID++;
-            thisX += 40;
+            thisX += 20;
+            //screenwidth - this objs width
+            if (thisX > 800 - 20) 
+            {
+                thisY += 20;
+                thisX = 195;
+            }
             myX = thisX;
             myY = thisY;
             myRect = new Rectangle(myX,myY,20,20);
@@ -73,23 +74,22 @@ namespace Examples.MyRaylibGames
                 green = GetRandomValue(0,255);
                 blue = GetRandomValue(0,255);
                 chosenString = GetRandomValue(0,2);
-
                 if (duration > 2000)
                 {
                     duration = 0;
                     random = false;
                 }
             }
-
-            DrawRectangleGradientEx(myRect,BLACK,BLACK,BLACK,BLACK);
+            DrawRectangleGradientEx(myRect,WHITE,BLACK,WHITE,BLACK);
             //use "myString[chosenString]" to randomize letters
-            DrawText(Convert.ToString(this.ID),myX,myY,19,myColor);
+            //Convert.ToString(this.ID)
+            DrawText("",myX,myY,19,RED);
         }
 
         public void DrawThis()
         {
             mySquare();
         }
-    }
 
+    }
 }

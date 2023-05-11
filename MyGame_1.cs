@@ -41,16 +41,17 @@ namespace Examples.MyRaylibGames
 
             //Game Object Instantiations
             //ProtoTypeUnitCircle myCircle4 = new ProtoTypeUnitCircle();
-            MindDoodle mindObj1  = new MindDoodle(true);
-            MindDoodle mindObj2  = new MindDoodle(true);
-            MindDoodle mindObj3  = new MindDoodle(true);
+            //MindDoodle mindObj1  = new MindDoodle(true);
+            //MindDoodle mindObj2  = new MindDoodle(true);
+            //MindDoodle mindObj3  = new MindDoodle(true);
             
 
 
             //Doodles
-            for (int i = 0; i < 100; i++) 
+            for (int i = 0; i < 4; i++) 
             {
                //push 100 instances of the mindDoodle into an array.
+               ListOfObjects.doodleList.Add(new MindDoodle(true)); 
             }
 
             //Various lists initializations
@@ -116,15 +117,15 @@ namespace Examples.MyRaylibGames
 
                 //Instantiate game objects
                 //itereate through circles list and draw every circle
-                foreach (ProtoTypeUnitCircle i in ListOfObjects.circlesList)
+                foreach (MindDoodle i in ListOfObjects.doodleList)
                 {
                     i.DrawThis();
                 }
 
                 //doodles
-                mindObj1.DrawThis();
-                mindObj2.DrawThis();
-                mindObj3.DrawThis();
+                //mindObj1.DrawThis();
+                //mindObj2.DrawThis();
+                //mindObj3.DrawThis();
                 
 
 

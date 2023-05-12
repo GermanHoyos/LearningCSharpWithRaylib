@@ -139,6 +139,20 @@ namespace Examples.MyRaylibGames
                 foreach (MindDoodle i in ListOfObjects.doodleList)
                 {
                     i.DrawThis();
+                    //if (i.myX < mouseClickPos.X && i.myY < mouseClickPos.Y)
+                    //{
+                    //    i.testText = Convert.ToString(i.ID);
+                    //}
+
+                    if (
+                        mouseClickPos.X > i.myX && mouseClickPos.X < i.myX + 20 &&
+                        mouseClickPos.Y > i.myY && mouseClickPos.Y < i.myY + 20
+                    )
+                    {
+                        i.testText = Convert.ToString(i.ID);
+                    }
+
+
                 }
 
                 //End drawing context

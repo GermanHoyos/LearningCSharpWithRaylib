@@ -29,6 +29,7 @@ namespace Examples.MyRaylibGames
         public int duration;
         public bool random = false;
         public Rectangle myRect;
+        public string testText = "";
         string[] myString = {"@", "#", "*"};
         /*         Matrix
          *         [][topL]     [top]       [topR]      
@@ -83,7 +84,7 @@ namespace Examples.MyRaylibGames
             DrawRectangleGradientEx(myRect,WHITE,BLACK,WHITE,BLACK);
             //use "myString[chosenString]" to randomize letters
             //Convert.ToString(this.ID)
-            DrawText("",myX,myY,19,RED);
+            DrawText(testText,myX,myY,19,RED);
         }
 
         public void DrawThis()

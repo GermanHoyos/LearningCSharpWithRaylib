@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Raylib_cs;
-using static Raylib_cs.Raylib;
-using static Raylib_cs.Color;
 using System.Numerics;
 using System.Drawing;
+using static Raylib_cs.Raylib;
+using static Raylib_cs.Color;
 using Rectangle = Raylib_cs.Rectangle;
 
 namespace Examples.MyRaylibGames
 {
-    public class MindDoodle
+    public class GridCellClass
     {
         //unique id for each instatiated object
         public static int thisID = 1;
@@ -46,9 +46,9 @@ namespace Examples.MyRaylibGames
          *         bottomR  = n + rowLength + 1
          */ 
 
-        public MindDoodle(){}
+        public GridCellClass(){}
 
-        public MindDoodle(bool random) {
+        public GridCellClass(bool random) {
             this.random = random;
             //build grid with placement of squares
             ID = thisID++;
@@ -91,6 +91,5 @@ namespace Examples.MyRaylibGames
         {
             mySquare();
         }
-
     }
 }

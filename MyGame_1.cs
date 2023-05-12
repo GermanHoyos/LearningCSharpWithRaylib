@@ -63,8 +63,8 @@ namespace Examples.MyRaylibGames
             //Object Instantiations
             for (int i = 0; i < 660; i++) 
             {
-               //push 100 instances of the mindDoodle into an array.
-               ListOfObjects.doodleList.Add(new MindDoodle(true)); 
+               //push 100 instances of the GridCellClass into an array.
+               ListOfObjects.gridList.Add(new GridCellClass(true)); 
             }
 
             // Main game loop
@@ -136,14 +136,9 @@ namespace Examples.MyRaylibGames
                 DrawLine(190,0,190,450,RED); //left console
 
                 //Itereate through lists and draw objects that are in list
-                foreach (MindDoodle i in ListOfObjects.doodleList)
+                foreach (GridCellClass i in ListOfObjects.gridList)
                 {
                     i.DrawThis();
-                    //if (i.myX < mouseClickPos.X && i.myY < mouseClickPos.Y)
-                    //{
-                    //    i.testText = Convert.ToString(i.ID);
-                    //}
-
                     if (
                         mouseClickPos.X > i.myX && mouseClickPos.X < i.myX + 20 &&
                         mouseClickPos.Y > i.myY && mouseClickPos.Y < i.myY + 20
@@ -151,8 +146,6 @@ namespace Examples.MyRaylibGames
                     {
                         i.testText = Convert.ToString(i.ID);
                     }
-
-
                 }
 
                 //End drawing context

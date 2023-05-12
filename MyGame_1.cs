@@ -144,7 +144,8 @@ namespace Examples.MyRaylibGames
                         mouseClickPos.Y > i.myY && mouseClickPos.Y < i.myY + 20
                     )
                     {
-                        i.testText = Convert.ToString(i.ID);
+                        //i.testText = Convert.ToString(i.ID);
+                        Algorithm_Anim01.waveFunction(i);
                     }
                 }
 

@@ -14,6 +14,28 @@ namespace Examples.MyRaylibGames
 {
     public class GridCellClass
     {
+
+        public static char genRandomChar()
+        {
+            char[] charArray = {'*','!','$'};
+            int x = GetRandomValue(0,2);
+            char randChar = charArray[x];
+            return randChar;
+        }
+
+        public static int[] genRandomArray()
+        {
+            int r = GetRandomValue(0,255);
+            int g = GetRandomValue(0,255);
+            int b = GetRandomValue(0,255);
+            int[] rgbArray = {r,g,b};
+            return rgbArray;
+        }
+
+
+
+
+
         //unique id for each instatiated object
         public static int thisID = 1;
         public static int thisX = 175;
@@ -48,16 +70,16 @@ namespace Examples.MyRaylibGames
 
         //animation sequances
 
-        //Wave initial
+        //Wave animation initial values
         public bool WAVE = false;
         float waveX = 100;
         float waveY = 10;
-
         public Vector2 waveXY;
 
-
+        //default constructor
         public GridCellClass(){}
 
+        //cunstructor that builds the grid
         public GridCellClass(bool random) {
             this.random = random;
             //build grid with placement of squares
@@ -74,43 +96,63 @@ namespace Examples.MyRaylibGames
             myRect = new Rectangle(myX,myY,20,20);
         }
 
+        //how each individual square looks
         public void mySquare()
-        {
-            Raylib_cs.Color myColor =  new Raylib_cs.Color( red, green, blue, 255);
+        {   
+            //Raylib_cs.Color myColor =  new Raylib_cs.Color( red, green, blue, 255);
 
-            if (duration < 2000 && random == true)
-            {
-                duration++;
-                red = GetRandomValue(0,255);
-                green = GetRandomValue(0,255);
-                blue = GetRandomValue(0,255);
-                chosenString = GetRandomValue(0,2);
-                if (duration > 2000)
-                {
-                    duration = 0;
-                    random = false;
-                }
-            }
-            DrawRectangleGradientEx(myRect,WHITE,BLACK,WHITE,BLACK);
-            //use "myString[chosenString]" to randomize letters
-            //Convert.ToString(this.ID)
-            DrawText(testText,myX,myY,19,RED);
+            //if (duration < 2000 && random == true)
+            //{
+            //    duration++;
+            //    red = GetRandomValue(0,255);
+            //    green = GetRandomValue(0,255);
+            //    blue = GetRandomValue(0,255);
+            //    chosenString = GetRandomValue(0,2);
+            //    if (duration > 2000)
+            //    {
+            //        duration = 0;
+            //        random = false;
+            //    }
+            //}
+            //DrawRectangleGradientEx(myRect,WHITE,BLACK,WHITE,BLACK);
+            //DrawText(testText,myX,myY,19,RED);
+
+            
+
+
+
+
+
         }
 
+        //algorithm to modify square properties over time
         public void wave()
         {
+            //create shape and interate
             waveXY = new Vector2(waveX,waveY);
             DrawPixelV(waveXY,WHITE);
-
             waveX++;
 
+            //reflect shape in grid
+            foreach (GridCellClass i in ListOfObjects.gridList)
+            {
+                if (i.myX < waveX)
+                {
+                    i.testText = myString[chosenString];
+                    
+                }
+               
+            }
+  
         }
 
 
 
         public void DrawThis()
         {
+            //draw all instantiated squares
             mySquare();
+
             if (WAVE)
             {
                 this.testText = "*";

@@ -19,11 +19,11 @@ namespace Examples.MyRaylibGames
         {
             char[] charArray = {'*','!','$'};
             int x = GetRandomValue(0,2);
-            char randChar = charArray[x];
-            return randChar;
+            char chosenChar = charArray[x];     
+            return chosenChar;
         }
 
-        public static int[] genRandomArray()
+        public static int[] genRandomColors()
         {
             int r = GetRandomValue(0,255);
             int g = GetRandomValue(0,255);
@@ -31,10 +31,6 @@ namespace Examples.MyRaylibGames
             int[] rgbArray = {r,g,b};
             return rgbArray;
         }
-
-
-
-
 
         //unique id for each instatiated object
         public static int thisID = 1;
@@ -79,7 +75,7 @@ namespace Examples.MyRaylibGames
         //default constructor
         public GridCellClass(){}
 
-        //cunstructor that builds the grid
+        //constructor that builds the grid
         public GridCellClass(bool random) {
             this.random = random;
             //build grid with placement of squares
@@ -99,29 +95,12 @@ namespace Examples.MyRaylibGames
         //how each individual square looks
         public void mySquare()
         {   
-            //Raylib_cs.Color myColor =  new Raylib_cs.Color( red, green, blue, 255);
-
-            //if (duration < 2000 && random == true)
-            //{
-            //    duration++;
-            //    red = GetRandomValue(0,255);
-            //    green = GetRandomValue(0,255);
-            //    blue = GetRandomValue(0,255);
-            //    chosenString = GetRandomValue(0,2);
-            //    if (duration > 2000)
-            //    {
-            //        duration = 0;
-            //        random = false;
-            //    }
-            //}
-            //DrawRectangleGradientEx(myRect,WHITE,BLACK,WHITE,BLACK);
-            //DrawText(testText,myX,myY,19,RED);
-
             
+            int[] colors = genRandomColors();
+            Raylib_cs.Color colorChosen = new Raylib_cs.Color(1,colors[0],colors[1],colors[2]); 
 
-
-
-
+            DrawRectangleGradientEx(myRect,colorChosen,BLACK,WHITE,BLACK);
+            DrawText(testText,myX,myY,19,WHITE);
 
         }
 
@@ -136,17 +115,14 @@ namespace Examples.MyRaylibGames
             //reflect shape in grid
             foreach (GridCellClass i in ListOfObjects.gridList)
             {
+
                 if (i.myX < waveX)
                 {
-                    i.testText = myString[chosenString];
-                    
+                    char charChosen = genRandomChar();
+                    i.testText = Convert.ToString(charChosen);
                 }
-               
             }
-  
         }
-
-
 
         public void DrawThis()
         {

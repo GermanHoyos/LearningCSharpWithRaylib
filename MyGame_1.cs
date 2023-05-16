@@ -138,7 +138,10 @@ namespace Examples.MyRaylibGames
                 //Itereate through lists and draw objects that are in list
                 foreach (GridCellClass i in ListOfObjects.gridList)
                 {
+                    //draw entire list of objects
                     i.DrawThis();
+
+                    //modify list properties based on click
                     if (
                         mouseClickPos.X > i.myX && mouseClickPos.X < i.myX + 20 &&
                         mouseClickPos.Y > i.myY && mouseClickPos.Y < i.myY + 20

@@ -11,7 +11,15 @@ namespace Examples.MyRaylibGames
         //do something
        public static void waveFunction(GridCellClass i)
        {
-            i.testText = "*";
-       }
+
+            //1) selected cell only
+            //i.testText = "*";
+   
+
+            
+            i.WAVE = true;
+
+
+        }
     }
 }

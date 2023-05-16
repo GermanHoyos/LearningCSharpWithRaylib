@@ -44,7 +44,17 @@ namespace Examples.MyRaylibGames
          *         right    = n + 1
          *         bottomL  = n + rowLength - 1
          *         bottomR  = n + rowLength + 1
-         */ 
+         */
+
+        //animation sequances
+
+        //Wave initial
+        public bool WAVE = false;
+        float waveX = 100;
+        float waveY = 10;
+
+        public Vector2 waveXY;
+
 
         public GridCellClass(){}
 
@@ -87,9 +97,27 @@ namespace Examples.MyRaylibGames
             DrawText(testText,myX,myY,19,RED);
         }
 
+        public void wave()
+        {
+            waveXY = new Vector2(waveX,waveY);
+            DrawPixelV(waveXY,WHITE);
+
+            waveX++;
+
+        }
+
+
+
         public void DrawThis()
         {
             mySquare();
+            if (WAVE)
+            {
+                this.testText = "*";
+                wave();
+            }
+
+
         }
     }
 }

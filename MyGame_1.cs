@@ -64,7 +64,7 @@ namespace Examples.MyRaylibGames
             for (int i = 0; i < 660; i++) 
             {
                //push 100 instances of the GridCellClass into an array.
-               ListOfObjects.gridList.Add(new GridCellClass(true)); 
+               ListOfObjects.gridList.Add(new GridCellClass()); 
             }
 
             // Main game loop

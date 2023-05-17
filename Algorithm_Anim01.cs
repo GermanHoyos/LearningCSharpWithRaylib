@@ -7,11 +7,15 @@ using System.Numerics;
 using static Raylib_cs.Raylib;
 using static Raylib_cs.Color;
 using Rectangle = Raylib_cs.Rectangle;
+using System.Threading;
 
 namespace Examples.MyRaylibGames
 {
     public static class Algorithm_Anim01
     {
+
+        
+
         public static char genRandomChar()
         {
             char[] charArray = {'*','!','$'};
@@ -26,26 +30,24 @@ namespace Examples.MyRaylibGames
             Raylib_cs.Color green = Raylib_cs.Color.GREEN;
             Raylib_cs.Color blue = Raylib_cs.Color.BLUE;
             Raylib_cs.Color[] randomColorArray = {red,green,blue};
-
             int randomChoice = GetRandomValue(0,2);
             return randomColorArray[randomChoice];
         }
 
 
 
-
         //do something
-       public static void waveFunction(GridCellClass i)
+       public static async void waveFunction(GridCellClass i)
        {
-
             //1) selected cell only
             i.cellText = "*";
-   
 
-            
+            PeriodicTimer customTimer = new PeriodicTimer(TimeSpan.FromSeconds(10));
 
-
-
-        }
+            while (await customTimer.WaitForNextTickAsync())
+            {
+                i.cellText = "T";
+            }
+       }
     }
 }

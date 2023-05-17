@@ -18,10 +18,10 @@ namespace Examples.MyRaylibGames
         public static int thisID    = 1;
         public static int thisX     = 175;
         public static int thisY     = 5;
-        public string cellText      = "";
-        Raylib_cs.Color customColor = RAYWHITE;
+        public string cellText      = "o";
+        Raylib_cs.Color backgroundColor = RAYWHITE;
+        Raylib_cs.Color cellTextColor = Raylib_cs.Color.BLACK;
         public Rectangle myRect;
-
 
         public int ID { get; set; }
         public int myX { get; set; }
@@ -61,10 +61,14 @@ namespace Examples.MyRaylibGames
         //visual properties of individual cells
         public void mySquare()
         {
-            Raylib_cs.Color customColor = Algorithm_Anim01.genRandomColors();
+            
+            //example of randomizing all values:
+                //backgroundColor = Algorithm_Anim01.genRandomColors();
+                //cellTextColor = Algorithm_Anim01.genRandomColors();
+                //cellText = Convert.ToString(Algorithm_Anim01.genRandomChar());
 
-            DrawRectangleGradientEx(myRect, customColor,customColor,customColor,customColor);
-            DrawText(cellText, myX, myY, 19, WHITE);
+            DrawRectangleGradientEx(myRect, backgroundColor,backgroundColor,backgroundColor,backgroundColor);
+            DrawText(cellText, myX + 5, myY + 2, 19, cellTextColor);
         }
 
         public void DrawThis()

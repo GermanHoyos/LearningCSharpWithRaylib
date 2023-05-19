@@ -149,6 +149,8 @@ namespace Examples.MyRaylibGames
                     {
                         //i.testText = Convert.ToString(i.ID);
                         Algorithm_Anim01.waveFunction(i);
+                        mouseClickPos.X = 0;
+                        mouseClickPos.Y = 0;
                     }
                 }
 

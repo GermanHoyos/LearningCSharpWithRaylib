@@ -14,11 +14,9 @@ namespace Examples.MyRaylibGames
     public static class Algorithm_Anim01
     {
 
-        
-
         public static char genRandomChar()
         {
-            char[] charArray = {'*','!','$'};
+            char[] charArray = {'*','%','$'};
             int x = GetRandomValue(0,2);
             char chosenChar = charArray[x];     
             return chosenChar;
@@ -34,20 +32,38 @@ namespace Examples.MyRaylibGames
             return randomColorArray[randomChoice];
         }
 
-
-
-        //do something
        public static async void waveFunction(GridCellClass i)
        {
-            //1) selected cell only
-            i.cellText = "*";
+            //get the id of the cell
+            int chosenCellId = i.ID;
+            int chosenCellListIndex = 0; // must be assigned or c# complains
 
-            PeriodicTimer customTimer = new PeriodicTimer(TimeSpan.FromSeconds(10));
+            //get the index of where the id is
+            foreach (GridCellClass x in ListOfObjects.gridList)
+            {
+                if (x.ID == i.ID)
+                {
+                    chosenCellListIndex = x.ID - 1;
+                }
+            }
+
+            //1) selected cell only
+            i.myCellText = "*";
+
+            PeriodicTimer customTimer = new PeriodicTimer(TimeSpan.FromSeconds(1));
+
+            //must devise a way of keeping track of the row length.
+            //must research wave algorithms in coding.
 
             while (await customTimer.WaitForNextTickAsync())
             {
-                i.cellText = "T";
+                
+                ListOfObjects.gridList[chosenCellListIndex - 1].myBackgroundColor = genRandomColors();
+                chosenCellListIndex--;
             }
-       }
+
+
+
+        }
     }
 }

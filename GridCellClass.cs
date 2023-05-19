@@ -26,6 +26,10 @@ namespace Examples.MyRaylibGames
         public int ID { get; set; }
         public int myX { get; set; }
         public int myY { get; set; }
+        public string myCellText { get; set; }
+        public Raylib_cs.Color myBackgroundColor { get; set; }
+        public Raylib_cs.Color myCellTextColor { get; set; }
+
 
         /*         Matrix
          *         [][topL]     [top]       [topR]      
@@ -47,14 +51,20 @@ namespace Examples.MyRaylibGames
         {
             ID = thisID++;
             thisX += 20;
+
             //screenwidth - this cells individual width
             if (thisX > 800 - 20)
             {
                 thisY += 20;
                 thisX = 195;
             }
+
             myX = thisX;
             myY = thisY;
+            myCellText = cellText;
+            myBackgroundColor = backgroundColor;
+            myCellTextColor = cellTextColor;
+
             myRect = new Rectangle(myX, myY, 20, 20);
         }
 
@@ -67,8 +77,8 @@ namespace Examples.MyRaylibGames
                 //cellTextColor = Algorithm_Anim01.genRandomColors();
                 //cellText = Convert.ToString(Algorithm_Anim01.genRandomChar());
 
-            DrawRectangleGradientEx(myRect, backgroundColor,backgroundColor,backgroundColor,backgroundColor);
-            DrawText(cellText, myX + 5, myY + 2, 19, cellTextColor);
+            DrawRectangleGradientEx(myRect, myBackgroundColor,myBackgroundColor,myBackgroundColor,myBackgroundColor);
+            DrawText(myCellText, myX + 5, myY + 2, 19, myCellTextColor);
         }
 
         public void DrawThis()

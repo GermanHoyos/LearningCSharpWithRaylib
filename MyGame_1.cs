@@ -60,6 +60,10 @@ namespace Examples.MyRaylibGames
             string pressedKey = "";
             Vector2 mouseClickPos = new (0,0);
 
+            //Object variable
+            Vector2 dotXY = new Vector2 (400,200);
+            float variator = 0;
+
             //Object Instantiations
             for (int i = 0; i < 660; i++) 
             {
@@ -135,24 +139,28 @@ namespace Examples.MyRaylibGames
                 //Console line sperator
                 DrawLine(190,0,190,450,RED); //left console
 
-                //Itereate through lists and draw objects that are in list
-                foreach (GridCellClass i in ListOfObjects.gridList)
-                {
-                    //draw entire list of objects
-                    //i.DrawThis();
+                variator += 0.1F;
+                dotXY.Y = (float)Math.Sin(variator) * 20 + 200;
+                DrawCircleV(dotXY, 10, WHITE);
 
-                    //modify list properties based on click
-                    if (
-                        mouseClickPos.X > i.myX && mouseClickPos.X < i.myX + 20 &&
-                        mouseClickPos.Y > i.myY && mouseClickPos.Y < i.myY + 20
-                    )
-                    {
-                        //i.testText = Convert.ToString(i.ID);
-                        //Algorithm_Anim01.waveFunction(i);
-                        //mouseClickPos.X = 0;
-                        //mouseClickPos.Y = 0;
-                    }
-                }
+                //Itereate through lists and draw objects that are in list
+                //foreach (GridCellClass i in ListOfObjects.gridList)
+                //{
+                //    //draw entire list of objects
+                //    //i.DrawThis();
+
+                //    //modify list properties based on click
+                //    if (
+                //        mouseClickPos.X > i.myX && mouseClickPos.X < i.myX + 20 &&
+                //        mouseClickPos.Y > i.myY && mouseClickPos.Y < i.myY + 20
+                //    )
+                //    {
+                //        //i.testText = Convert.ToString(i.ID);
+                //        //Algorithm_Anim01.waveFunction(i);
+                //        //mouseClickPos.X = 0;
+                //        //mouseClickPos.Y = 0;
+                //    }
+                //}
 
                 //End drawing context
                 EndDrawing();

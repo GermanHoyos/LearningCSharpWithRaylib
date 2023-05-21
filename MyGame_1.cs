@@ -139,7 +139,7 @@ namespace Examples.MyRaylibGames
                 foreach (GridCellClass i in ListOfObjects.gridList)
                 {
                     //draw entire list of objects
-                    i.DrawThis();
+                    //i.DrawThis();
 
                     //modify list properties based on click
                     if (
@@ -148,9 +148,9 @@ namespace Examples.MyRaylibGames
                     )
                     {
                         //i.testText = Convert.ToString(i.ID);
-                        Algorithm_Anim01.waveFunction(i);
-                        mouseClickPos.X = 0;
-                        mouseClickPos.Y = 0;
+                        //Algorithm_Anim01.waveFunction(i);
+                        //mouseClickPos.X = 0;
+                        //mouseClickPos.Y = 0;
                     }
                 }
 

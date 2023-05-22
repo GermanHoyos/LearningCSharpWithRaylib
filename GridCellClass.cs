@@ -46,6 +46,25 @@ namespace Examples.MyRaylibGames
          *         bottomR  = n + rowLength + 1
          */
 
+        //[in: MyGame_1.cs]
+        //Itereate through lists and draw objects that are in list 
+        //foreach (GridCellClass i in ListOfObjects.gridList)
+        //{
+        //    //draw entire list of objects
+        //    //i.DrawThis();
+        //    //modify list properties based on click
+        //    if (
+        //        mouseClickPos.X > i.myX && mouseClickPos.X < i.myX + 20 &&
+        //        mouseClickPos.Y > i.myY && mouseClickPos.Y < i.myY + 20
+        //    )
+        //    {
+        //        //i.testText = Convert.ToString(i.ID);
+        //        //Algorithm_Anim01.waveFunction(i);
+        //        //mouseClickPos.X = 0;
+        //        //mouseClickPos.Y = 0;
+        //    }
+        //}
+
         //constructor that builds the grid
         public GridCellClass()
         {

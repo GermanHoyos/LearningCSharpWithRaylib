@@ -238,7 +238,7 @@ namespace Examples.MyRaylibGames
             //    "resources/models/vox/monu9.vox"
             //};
 
-            InitWindow(screenWidth, screenHeight, "raylib [models] example - magicavoxel loading");
+            InitWindow(screenWidth, screenHeight, "::Adrian Hoyos::");
 
             // Define the camera to look into our 3d world
             Camera3D camera = new Camera3D();
@@ -323,7 +323,7 @@ namespace Examples.MyRaylibGames
                 //----------------------------------------------------------------------------------
                 BeginDrawing();
 
-                ClearBackground(RAYWHITE);
+                ClearBackground(BLACK);
 
                 // Draw 3D model
                 BeginMode3D(camera);
@@ -353,7 +353,7 @@ namespace Examples.MyRaylibGames
                     float a = (angle + offset);
                     sphereCenter.Y =  1f * (float)Math.Sin(a);
                     sphereCenter.X = i;
-                    DrawSphere(sphereCenter,sphereRadius,PURPLE);
+                    DrawSphere(sphereCenter,sphereRadius,GREEN);
                     DrawGrid(10, 1.0f);
                     offset += 1f;
                    
@@ -370,9 +370,9 @@ namespace Examples.MyRaylibGames
                 EndMode3D();
 
                 // Display info
-                DrawRectangle(10, 400, 310, 30, Fade(SKYBLUE, 0.5f));
-                DrawRectangleLines(10, 400, 310, 30, Fade(DARKBLUE, 0.5f));
-                DrawText(Convert.ToString(sphereCenter.X), 40, 410, 10, BLUE);
+                DrawRectangle(10, 400, 380, 35, Fade(SKYBLUE, 0.5f));
+                DrawRectangleLines(10, 400, 380, 35, Fade(DARKBLUE, 0.5f));
+                DrawText("Formula:  y = a * sin(b(x-c)) + d", 40, 410, 20, GREEN);
 
                 //string fileName = Path.GetFileName(voxFileNames[currentModel]);
                 //DrawText($"File: {fileName}", 10, 10, 20, GRAY);
